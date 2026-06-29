@@ -13,6 +13,7 @@ GO
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
 BEGIN
     ALTER DATABASE DataWarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                                                  -- is used before dropping or restoring a database to ensure there is only one connection allowed and all existing connections are immediately terminated. Any uncommitted transactions are rolled back, preventing the "database is currently in use" error when executing DROP DATABASE or RESTORE DATABASE
     DROP DATABASE DataWarehouse;
 END;
 GO
